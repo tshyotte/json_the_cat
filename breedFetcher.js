@@ -1,16 +1,8 @@
-const https = require('https');
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+const https = require('request');
 
 
-let searchBreed = process.argv.slice(2)[1];
-let searchUrl = `${process.argv.slice(2)[0]}?q=${searchBreed}`;
-
-//const fetchBreedDescription = function(breedName, callback) {
-  https.get(searchUrl, (resp) => {
+  const fetchBreedDescription = function(breedName, callback) {
+  https.get("https://vcahospitals.com/know-your-pet/cat-breeds/siberian", (resp) => {
     let data = '';
   
     // A chunk of data has been recieved.
@@ -27,7 +19,7 @@ let searchUrl = `${process.argv.slice(2)[0]}?q=${searchBreed}`;
     console.log("Error: " + err.message);
   });
 
-//};
-rl.close();
+};
 
-//module.exports = { fetchBreedDescription };
+
+module.exports = { fetchBreedDescription };
